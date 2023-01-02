@@ -1,0 +1,22 @@
+{if TIME > CURRENT_TIME }
+    <div class="warning">
+        {LANG("NEWS.NOT_ENABLED")}
+
+        {USER_HASRIGHT("news", "enable", "public")}
+        {if RESULT == 1}
+            <a href="admin.php{MAIN_LINK('news', 'enable', 'id', ID)}">{LANG("CORE.ENABLE")}</a>
+        {/if}
+    </div>
+{/if}
+
+
+{USER_HASRIGHT("content", "edit", "public")}
+{if RESULT == 1}
+<div style="float: right; margin: 10px;">
+    <a class="buttonLight" href="{ROOT}admin.php{MAIN_LINK('news', 'edit', 'id', ID)}" alt="{LANG('CORE.EDIT')}"><img src="{ROOT}/designs/admin/images/edit.png" /></a>
+</div>
+{/if}
+
+<h1>{TITLE}</h1>
+
+{TEXT}

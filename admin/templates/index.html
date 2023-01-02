@@ -1,0 +1,34 @@
+<h1>{LANG("news.index")}</h1>
+
+<a href="{MAIN_LINK('news', 'add')}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>
+
+<div class="table">
+{list PAGES}
+    <div class="row">
+        <div>
+            {if PAGES.TIME <= TIME}
+                {if PAGES.TIME}
+                    <span class="activeIcon"></span>
+                {else}
+                    <span class="inactiveIcon"></span>
+                {/if}
+            {else}
+                <span class="inactiveIcon"></span>                
+            {/if}
+        </div>
+        <div>{PAGES.ID}</div>
+        <div><a href="index.php?module=news&action=index&id={PAGES.ID}" target="_blank">{PAGES.TITLE}</a></div>
+        <div class="right">
+            <a href="{MAIN_LINK('news', 'edit', 'id', PAGES.ID)}" title="{LANG('CORE.EDIT')}" class="editButton"></a>            
+            <a href="{MAIN_LINK('news', 'delete', 'id', PAGES.ID)}" title="{LANG('CORE.DELETE')}" class="delButton"></a>
+            {if PAGES.ACTIVE == 1}
+                <a href="{MAIN_LINK('news', 'disable', 'id', PAGES.ID)}" title="{LANG('CORE.DISABLE')}" class="disableButton"></a>
+            {else}
+                <a href="{MAIN_LINK('news', 'enable', 'id', PAGES.ID)}" title="{LANG('CORE.ENABLE')}" class="enableButton"></a>
+            {/if}
+        </div>
+    </div>
+{/list}
+</div>
+
+<a href="{MAIN_LINK('news', 'add')}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>

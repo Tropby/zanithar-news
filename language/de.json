@@ -1,0 +1,43 @@
+{
+    "public" :{
+        "index": {
+            "NOT_ENABLED" : "Diese seite ist noch nicht freigegeben!"
+        }
+    },
+    "admin" :{
+        "navi" : {
+            "modulename" : "News",
+            "action_index" : "anzeigen",
+            "action_add" : "hinzufügen",
+            "action_edit" : "bearbeiten"
+        },
+        "index" : {
+            "index" : "News"
+        },
+        "edit" : {
+            "headline" : "News bearbeiten",
+            "title" : "Titel",
+            "text" : "Text",
+            "save" : "speichern",
+            "searchable": "In die suche aufnehmen",
+            "allowcoms": "Kommentare erlauben",
+            "allowrating": "Bewertung  erlauben",
+            "metaDescription": "Kurzbeschreibung für Suchoptimierung (Meta Description)",
+            "userid": "Author",
+            "catid": "Kategorie",
+            "time_active": "Aktivzeitpunkt"
+        },
+        "add" : {
+            "headline" : "News hinzufügen",
+            "title" : "Titel",
+            "text" : "Text",
+            "save" : "speichern",
+            "searchable": "In die suche aufnehmen",
+            "allowcoms": "Kommentare erlauben",
+            "allowrating": "Bewertung  erlauben",
+            "metaDescription": "Kurzbeschreibung für Suchoptimierung (Meta Description)",
+            "userid": "Author",
+            "catid": "Kategorie"
+        }
+    }
+}
