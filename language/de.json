@@ -1,7 +1,8 @@
 {
     "public" :{
-        "index": {
-            "NOT_ENABLED" : "Diese seite ist noch nicht freigegeben!"
+        "core": {
+            "NOT_ENABLED" : "Diese news ist noch nicht sichtbar!",
+            "title" : "News"
         }
     },
     "admin" :{

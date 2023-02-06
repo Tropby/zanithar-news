@@ -2,6 +2,8 @@
 
 namespace apexx\modules\news\admin\action;
 
+use apexx\modules\core\EXECUTION_TYPE;
+
 class Add extends \apexx\modules\core\IAction
 {
     public function execute(): void
@@ -12,9 +14,9 @@ class Add extends \apexx\modules\core\IAction
             $news = $this->param()->post("news_text");
             $title = $this->param()->post("news_title");
             $secid = "all";
-            $catid = $this->param()->post("news_catid");
+            //$catid = $this->param()->post("news_catid");
             $userid = $this->param()->post("news_userid");
-            $metaDescription = $this->param()->post("news_metaDescription");
+            //$metaDescription = $this->param()->post("news_metaDescription");
             $time = time();
             $lastchange = time();
 
@@ -44,15 +46,13 @@ class Add extends \apexx\modules\core\IAction
                     ( 
                         `text`, 
                         `title`, 
-                        `userid`,
+                        `author`,
                         `time`,
                         `lastchange`,
                         `lastchange_userid`,
                         `searchable`,
                         `allowcoms`,
-                        `allowrating`,
-                        `active`,
-                        `time`
+                        `allowrating`
                     ) 
                     VALUES 
                     ( 
@@ -64,9 +64,7 @@ class Add extends \apexx\modules\core\IAction
                         :lastchange_userid,
                         :searchable,
                         :allowcoms,
-                        :allowrating,
-                        0,
-                        :time
+                        :allowrating
             )");
 
             $statement->bindParam(":text", $news);
@@ -98,7 +96,7 @@ class Add extends \apexx\modules\core\IAction
                 "SELECTED" => false
             );
         }
-
+/*
         $stmt = $this->prepare("SELECT `value` FROM APEXX_PREFIX_config WHERE module='news' AND varname='groups'");
         $stmt->execute();
         $categories = unserialize($stmt->fetch()["value"]);
@@ -112,6 +110,7 @@ class Add extends \apexx\modules\core\IAction
                 );
         }
         $this->assign("CATS", $tmplCategories);
+        */
         $this->assign("USERS", $tmplUsers);
         $this->assign("TITLE", "");
         $this->assign("TEXT", "");

@@ -11,14 +11,14 @@ class Delete extends \apexx\modules\core\IAction
         {
             $id = $this->param()->getInt("id");
 
-            $statement = $this->prepare("DELETE FROM APEXX_PREFIX_content WHERE `id` = :id");
+            $statement = $this->prepare("DELETE FROM APEXX_PREFIX_news WHERE `id` = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute())
-                $this->module()->core()->redirectAction("content", "index");
+                $this->module()->core()->redirectAction("news", "index");
             else
-                new \Exception("Can not delete content page!");
+                new \Exception("Can not delete news!");
         }
         else
-            new \Exception("Can not delete content page (Id missing)!");
+            new \Exception("Can not delete news (Id missing)!");
     }
 }

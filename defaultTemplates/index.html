@@ -1,22 +1,39 @@
-{if TIME > CURRENT_TIME }
-    <div class="warning">
-        {LANG("NEWS.NOT_ENABLED")}
+<h1>{LANG("NEWS.TITLE")}</h1>
+<hr />
+{list NEWS}
 
-        {USER_HASRIGHT("news", "enable", "public")}
-        {if RESULT == 1}
-            <a href="admin.php{MAIN_LINK('news', 'enable', 'id', ID)}">{LANG("CORE.ENABLE")}</a>
-        {/if}
-    </div>
-{/if}
-
-
-{USER_HASRIGHT("content", "edit", "public")}
+{USER_HASRIGHT("news", "edit", "admin")}
 {if RESULT == 1}
 <div style="float: right; margin: 10px;">
-    <a class="buttonLight" href="{ROOT}admin.php{MAIN_LINK('news', 'edit', 'id', ID)}" alt="{LANG('CORE.EDIT')}"><img src="{ROOT}/designs/admin/images/edit.png" /></a>
+    <a class="buttonLight" href="{ROOT}admin.php{MAIN_LINK('news', 'edit', 'id', NEWS.ID)}"
+        alt="{LANG('CORE.EDIT')}"><img src="{ROOT}/designs/admin/images/edit.png" /></a>
 </div>
 {/if}
 
-<h1>{TITLE}</h1>
+<h2>{NEWS.TITLE}</h2>
 
-{TEXT}
+{if NEWS.TIME > CURRENT_TIME }
+<div class="warning">
+    {LANG("NEWS.NOT_ENABLED")}
+</div>
+{/if}
+
+{if !NEWS.TIME}
+<div class="error">
+    {LANG("NEWS.NOT_ENABLED")}
+</div>
+{/if}
+
+<p>
+{if NEWS.TIME}
+<i>{MAIN_DATE("d.m.Y H:i:s", NEWS.TIME)}</i>
+{else}
+<i>01.01.1900 01:01:01</i>
+{/if}
+</p>
+
+<p>{NEWS.TEXT}</p>
+
+<hr />
+
+{/list}
