@@ -28,6 +28,13 @@ class Module extends \apexx\modules\core\IModule
 
     public function startup(): void
     {
+        $this->core()->callFunction("registerNaviItem", [ $this->name(), "list", "news.html"]);
     }
 
+    public function htaccess(): array
+    {
+        return [            
+            "RewriteRule ^news.html$ index.php?module=news&action=index [L]"
+        ];
+    }
 }
