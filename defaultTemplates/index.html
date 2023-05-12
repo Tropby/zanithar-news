@@ -1,6 +1,45 @@
 <h1>{LANG("NEWS.TITLE")}</h1>
 <hr />
+
+<style>
+
+    .news
+    {
+        overflow: hidden;
+    }
+
+    .news img
+    {
+        margin: 10px;
+    }
+
+    .news_top
+    {
+        background: #CC0000;
+        color: #EEEEEE;
+        font-weight: bold;
+        display: inline;
+        padding: 4px;
+        border-radius: 5px;
+        filter: drop-shadow(1px 1px 1px black)
+    }
+
+    @media only screen and (max-width: 600px) {
+        img
+        {
+            display: block;
+            max-width: 500px;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+        }
+    }
+
+</style>
+
 {list NEWS}
+
+<div class="news">
 
 {USER_HASRIGHT("news", "edit", "admin")}
 {if RESULT == 1}
@@ -11,6 +50,12 @@
 {/if}
 
 <h2>{NEWS.TITLE}</h2>
+
+{CT = CURRENT_TIME}
+{CT - 604800}
+{if NEWS.TIME > CT}
+<div class="news_top">TOP</div>
+{/if}
 
 {if NEWS.TIME > CURRENT_TIME }
 <div class="warning">
@@ -28,12 +73,12 @@
 {if NEWS.TIME}
 <i>{MAIN_DATE("d.m.Y H:i:s", NEWS.TIME)}</i>
 {else}
-<i>01.01.1900 01:01:01</i>
+<i></i>
 {/if}
 </p>
 
 <p>{NEWS.TEXT}</p>
 
-<hr />
+</div>
 
 {/list}
