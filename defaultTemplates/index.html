@@ -1,4 +1,4 @@
-<h1>{LANG("NEWS.TITLE")}</h1>
+<h1>{LANG("NEWS.TITLE")}{if CAT_NAME} - {CAT_NAME}{/if}</h1>
 <hr />
 
 <style>
@@ -49,7 +49,7 @@
 </div>
 {/if}
 
-<h2>{NEWS.TITLE}</h2>
+<h2><a href="{ROOT}news/{NEWS.ID}/{NEWS.TITLE}">{NEWS.TITLE}</a></h2>
 
 {CT = CURRENT_TIME}
 {CT - 604800}
@@ -71,7 +71,7 @@
 
 <p>
 {if NEWS.TIME}
-<i>{MAIN_DATE("d.m.Y H:i:s", NEWS.TIME)}</i>
+<i>{MAIN_DATE("d.m.Y H:i:s", NEWS.TIME)} - {NEWS.CAT_NAME}</i>
 {else}
 <i></i>
 {/if}

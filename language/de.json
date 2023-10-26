@@ -26,7 +26,7 @@
             "metaDescription": "Kurzbeschreibung für Suchoptimierung (Meta Description)",
             "userid": "Author",
             "catid": "Kategorie",
-            "time_active": "Aktivzeitpunkt"
+            "time_active": "Anzeigen ab"
         },
         "add" : {
             "headline" : "News hinzufügen",
@@ -38,7 +38,8 @@
             "allowrating": "Bewertung  erlauben",
             "metaDescription": "Kurzbeschreibung für Suchoptimierung (Meta Description)",
             "userid": "Author",
-            "catid": "Kategorie"
+            "catid": "Kategorie",
+            "time_active": "Anzeigen ab"
         }
     }
 }

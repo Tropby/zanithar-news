@@ -3,14 +3,19 @@
 <form action="?{MAIN_CurrentParam()}&id={ID}" method="POST">
     {MAIN_SELECT("news.userid", USERS)}
 
+    {MAIN_SELECT("news.catid", CATS)}
+
     {MAIN_TextInput("text", "news.title", TITLE)}
     {MAIN_TextArea("news.text", TEXT)}
 
     {MAIN_DateTimeInput("news.time", TIME)}
 
     {MAIN_CheckBox("news.searchable", SEARCHABLE)}
+
+    <!-- 
     {MAIN_CheckBox("news.allowcoms", ALLOWCOMS)}
     {MAIN_CheckBox("news.allowrating", ALLOWRATING)}
+    -->
 
     {MAIN_Submit("news.save")}
 </form>

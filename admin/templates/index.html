@@ -17,7 +17,10 @@
             {/if}
         </div>
         <div>{PAGES.ID}</div>
-        <div><a href="index.php?module=news&action=detail&id={PAGES.ID}" target="_blank">{PAGES.TITLE}</a></div>
+        <div>
+            <a href="index.php?module=news&action=detail&id={PAGES.ID}" target="_blank">{PAGES.TITLE}</a><br />
+            <small>{MAIN_DATE("d.m.Y H:i:s", PAGES.TIME)} - {PAGES.CAT_NAME}</small>
+        </div>
         <div class="right">
             <a href="{MAIN_LINK('news', 'edit', 'id', PAGES.ID)}" title="{LANG('CORE.EDIT')}" class="editButton"></a>            
             <a href="{MAIN_LINK('news', 'delete', 'id', PAGES.ID)}" title="{LANG('CORE.DELETE')}" class="delButton"></a>

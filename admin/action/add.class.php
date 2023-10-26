@@ -14,7 +14,7 @@ class Add extends \apexx\modules\core\IAction
             $news = $this->param()->post("news_text");
             $title = $this->param()->post("news_title");
             $secid = "all";
-            //$catid = $this->param()->post("news_catid");
+            $category = $this->param()->post("news_catid");
             $userid = $this->param()->post("news_userid");
             //$metaDescription = $this->param()->post("news_metaDescription");
             $time = time();
@@ -52,7 +52,8 @@ class Add extends \apexx\modules\core\IAction
                         `lastchange_userid`,
                         `searchable`,
                         `allowcoms`,
-                        `allowrating`
+                        `allowrating`,
+                        `category`
                     ) 
                     VALUES 
                     ( 
@@ -64,7 +65,8 @@ class Add extends \apexx\modules\core\IAction
                         :lastchange_userid,
                         :searchable,
                         :allowcoms,
-                        :allowrating
+                        :allowrating,
+                        :category
             )");
 
             $statement->bindParam(":text", $news);
@@ -76,6 +78,7 @@ class Add extends \apexx\modules\core\IAction
             $statement->bindParam(":searchable", $searchable);
             $statement->bindParam(":allowcoms", $allowcoms);
             $statement->bindParam(":allowrating", $allowrating);
+            $statement->bindParam(":category", $category);
 
             if ($statement->execute())
                 $this->module()->core()->redirectAction("news", "index");
@@ -88,29 +91,34 @@ class Add extends \apexx\modules\core\IAction
         $stmt->execute();
         $users = $stmt->fetchAll();
         $tmplUsers = array();
+
+        /*** @var \apexx\modules\user\Module */
+        $userModule = $this->module()->core()->module("user");
+        /*** @var \apexx\modules\user\User */
+        $userId = $userModule->currentUser()->id();
         foreach ($users as $user)
         {
             $tmplUsers[] = array(
                 "VALUE" => $user["userid"],
                 "NAME" => $user["username"],
+                "SELECTED" => $user["userid"] == $userId
+            );
+        }
+
+        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt->execute();
+        $categories = $stmt->fetchAll();
+        $tmplCategories = array();
+        foreach ($categories as $category)
+        {
+            $tmplCategories[] = array(
+                "VALUE" => $category["id"],
+                "NAME" => $category["name"],
                 "SELECTED" => false
             );
         }
-/*
-        $stmt = $this->prepare("SELECT `value` FROM APEXX_PREFIX_config WHERE module='news' AND varname='groups'");
-        $stmt->execute();
-        $categories = unserialize($stmt->fetch()["value"]);
-        $tmplCategories = array(array("VALUE" => "-1", "NAME" => "--- Bitte wählen ---", "SELECTED" => true));
-        foreach ($categories as $catid => $cat)
-        {
-            $tmplCategories[] = array(
-                    "VALUE" => $catid,
-                    "NAME" => $cat,
-                    "SELECTED" => false
-                );
-        }
         $this->assign("CATS", $tmplCategories);
-        */
+
         $this->assign("USERS", $tmplUsers);
         $this->assign("TITLE", "");
         $this->assign("TEXT", "");

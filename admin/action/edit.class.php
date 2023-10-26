@@ -21,6 +21,7 @@ class Edit extends \apexx\modules\core\IAction
             $text = $this->param()->post("news_text");
             $title = $this->param()->post("news_title");
             $author = $this->param()->post("news_userid");
+            $category = $this->param()->post("news_catid");
             $lastchange = time();
 
             /**
@@ -55,7 +56,8 @@ class Edit extends \apexx\modules\core\IAction
                     `searchable` = :searchable,
                     `allowcoms` = :allowcoms,
                     `time` = FROM_UNIXTIME(:time),
-                    `allowrating` = :allowrating
+                    `allowrating` = :allowrating,
+                    `category` = :category
                 WHERE 
                     `id` = :id");
 
@@ -69,6 +71,7 @@ class Edit extends \apexx\modules\core\IAction
             $statement->bindParam(":searchable", $searchable);
             $statement->bindParam(":allowcoms", $allowcoms);
             $statement->bindParam(":allowrating", $allowrating);
+            $statement->bindParam(":category", $category);
 
             if($statement->execute())
                 $this->module()->core()->redirectAction("news","index");
@@ -87,7 +90,8 @@ class Edit extends \apexx\modules\core\IAction
                 `lastchange_userid` AS LAST_CHANGE_USERID,
                 `searchable` AS SEARCHABLE,
                 `allowcoms` AS ALLOWCOMS,
-                `allowrating` AS ALLOWRATING
+                `allowrating` AS ALLOWRATING,
+                `category` AS CATID
             FROM 
                 APEXX_PREFIX_news 
             WHERE 
@@ -108,6 +112,20 @@ class Edit extends \apexx\modules\core\IAction
                 "SELECTED" => $user["userid"] == $news["USERID"]
             );
         }
+
+        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt->execute();
+        $categories = $stmt->fetchAll();
+        $tmplCategories = array();
+        foreach ($categories as $category)
+        {
+            $tmplCategories[] = array(
+                "VALUE" => $category["id"],
+                "NAME" => $category["name"],
+                "SELECTED" => $category["id"] == $news["CATID"]
+            );
+        }
+        $this->assign("CATS", $tmplCategories);
 
         $this->assign("ID", $id);
         $this->assign("TITLE", $news["TITLE"]);

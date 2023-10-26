@@ -13,10 +13,10 @@ class Detail extends \apexx\modules\core\IAction
             $id = $this->param()->getInt("id");
 
         if( !$id )
-        {
+        {            
             if($this->param()->getIf("name"))
             {
-                $name = $this->param()->get("name");
+                $name = $this->param()->getUrlDecoded("name");
                 $statement = $this->prepare("
                     SELECT 
                         id
@@ -41,16 +41,19 @@ class Detail extends \apexx\modules\core\IAction
         $userModule = $this->module()->core()->module("user");
         $user = $userModule->currentUser();
 
-        $statement = $this->prepare("
-            SELECT 
-                id AS ID, 
+        $statement = $this->prepare(
+            "SELECT 
+                a.id AS ID, 
                 UNIX_TIMESTAMP(`time`) AS `TIME`, 
-                title as TITLE, 
-                `text` AS `TEXT`
+                a.title as TITLE, 
+                `text` AS `TEXT`,
+                b.name AS CAT_NAME
             FROM
-                APEXX_PREFIX_news
+                APEXX_PREFIX_news AS a
+            LEFT JO IN 
+                APEXX_PREFIX_news_category AS b ON (a.category = b.id)
             WHERE
-                `id` = :id ".( $user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" : " AND `active` = 1 " ) );
+                a.id = :id ".( $user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" : " AND a.time < NOW() " ) );
         $statement->bindParam(":id", $id);
         $statement->execute();
         $content = $statement->fetch();
@@ -58,8 +61,9 @@ class Detail extends \apexx\modules\core\IAction
         if( $content )
         {
             $this->assign("TIME", $content["TIME"]);
-            $this->assign("CURRENT_TIME", time());
+            $this->assign("CURRENT_TIME",time());
             $this->assign("TITLE", $content["TITLE"]);
+            $this->assign("CAT_NAME", $content["CAT_NAME"]);
             $this->assign("ID", $content["ID"]);
             $this->assign("TEXT", $content["TEXT"]);
             $this->render("detail");
