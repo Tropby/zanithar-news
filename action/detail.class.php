@@ -50,7 +50,7 @@ class Detail extends \apexx\modules\core\IAction
                 b.name AS CAT_NAME
             FROM
                 APEXX_PREFIX_news AS a
-            LEFT JO IN 
+            LEFT JOIN 
                 APEXX_PREFIX_news_category AS b ON (a.category = b.id)
             WHERE
                 a.id = :id ".( $user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" : " AND a.time < NOW() " ) );
