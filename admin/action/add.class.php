@@ -81,7 +81,24 @@ class Add extends \apexx\modules\core\IAction
             $statement->bindParam(":category", $category);
 
             if ($statement->execute())
+            {
+                if( $this->param()->postIf("news_newsletter") )
+                {
+                    $id = $this->lastInsertId();
+                    $mail = new \apexx\modules\news\mail\Newsletter($this->module());
+                    $mail->execute(
+                        [
+                            "TITLE" => "$title",
+                            "TEXT" => $news,
+                            "ID" => $id,
+                            "CATEGORY" => $category
+                        ]
+                    );
+    
+                }
+
                 $this->module()->core()->redirectAction("news", "index");
+            }
             else
                 new \Exception(implode("\n", $statement->errorInfo()));
         }
@@ -126,6 +143,7 @@ class Add extends \apexx\modules\core\IAction
         $this->assign("SEARCHABLE", true);
         $this->assign("ALLOWCOMS", false);
         $this->assign("ALLOWRATING", false);
+        $this->assign("NEWSLETTER", false);
 
         $this->render("add_edit");
     }

@@ -73,6 +73,20 @@ class Edit extends \apexx\modules\core\IAction
             $statement->bindParam(":allowrating", $allowrating);
             $statement->bindParam(":category", $category);
 
+            if( $this->param()->postIf("news_newsletter") )
+            {
+                $mail = new \apexx\modules\news\mail\Newsletter($this->module());
+                $mail->execute(
+                    [
+                        "TITLE" => "$title",
+                        "TEXT" => $text,
+                        "ID" => $id,
+                        "CATEGORY" => $category
+                    ]
+                );
+
+            }
+
             if($statement->execute())
                 $this->module()->core()->redirectAction("news","index");
             else
@@ -134,7 +148,9 @@ class Edit extends \apexx\modules\core\IAction
         $this->assign("USERS", $tmplUsers);
         $this->assign("SEARCHABLE", $news["SEARCHABLE"] != 0);
         $this->assign("ALLOWCOMS", $news["ALLOWCOMS"] != 0);
-        $this->assign("ALLOWRATING", $news["ALLOWRATING"] != 0);        
+        $this->assign("ALLOWRATING", $news["ALLOWRATING"] != 0);
+        $this->assign("NEWSLETTER", false);
+
         
         $this->render("add_edit");
     }

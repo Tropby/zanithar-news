@@ -6,6 +6,9 @@
         }
     },
     "admin" :{
+        "core" : {
+            "newsletter" : "Newsletter"
+        },
         "navi" : {
             "modulename" : "News",
             "action_index" : "anzeigen",
