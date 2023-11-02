@@ -7,22 +7,33 @@
     },
     "admin" :{
         "core" : {
-            "newsletter" : "Newsletter"
+            "newsletter" : "Newsletter",
+            "catshow" : "Kategorien",
+            "save" : "speichern",
+            "name" : "Name",
+            "receivers" : "Newsletter Empfänger"
         },
         "navi" : {
             "modulename" : "News",
             "action_index" : "anzeigen",
             "action_add" : "hinzufügen",
-            "action_edit" : "bearbeiten"
+            "action_edit" : "bearbeiten",
+            "action_catshow" : "Kategorien"
         },
         "index" : {
             "index" : "News"
         },
+        "catadd" : {
+            "headline" : "News Kategorie erstellen"
+        },
+        "receiveradd" : {
+            "headline" : "News Kategorie Empfänger hinzufügen",
+            "email" : "E-Mail Adresse"
+        },
         "edit" : {
             "headline" : "News bearbeiten",
             "title" : "Titel",
-            "text" : "Text",
-            "save" : "speichern",
+            "text" : "Text",            
             "searchable": "In die suche aufnehmen",
             "allowcoms": "Kommentare erlauben",
             "allowrating": "Bewertung  erlauben",

@@ -1,0 +1,19 @@
+<h1>{LANG("news.catshow")}</h1>
+
+<a href="{MAIN_LINK('news', 'receiveradd', 'catid', CATID)}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>
+
+<div class="table">
+{list RECEIVERS}
+    <div class="row">
+        <div>{RECEIVERS.ID}</div>
+        <div>
+            {RECEIVERS.EMAIL}            
+        </div>
+        <div class="right">            
+            <a href="{MAIN_LINK('news', 'receiverdelete', 'id', RECEIVERS.ID, 'catid', CATID)}" title="{LANG('CORE.DELETE')}" class="delButton"></a>
+        </div>
+    </div>
+{/list}
+</div>
+
+<a href="{MAIN_LINK('news', 'receiveradd', 'catid', CATID)}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>

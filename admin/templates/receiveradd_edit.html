@@ -1,0 +1,6 @@
+<h1>{LANG("news.headline")}</h1>
+
+<form action="?{MAIN_CurrentParam()}&catid={CATID}" method="POST">
+    {MAIN_TextInput("Text", "news.email", EMAIL)}
+    {MAIN_Submit("news.save")}
+</form>

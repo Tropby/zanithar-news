@@ -17,10 +17,19 @@ class Module extends \apexx\modules\core\IModule
         // Register all template functions
         $this->registerAction("index", EXECUTION_TYPE::ADMIN);
         $this->registerAction("add", EXECUTION_TYPE::ADMIN);
+        $this->registerAction("catshow", EXECUTION_TYPE::ADMIN);
         $this->registerAction("edit", EXECUTION_TYPE::ADMIN, false);
         $this->registerAction("enable", EXECUTION_TYPE::ADMIN, false);
         $this->registerAction("disable", EXECUTION_TYPE::ADMIN, false);
         $this->registerAction("delete", EXECUTION_TYPE::ADMIN, false);
+
+        $this->registerAction("catadd", EXECUTION_TYPE::ADMIN, false);
+        $this->registerAction("catedit", EXECUTION_TYPE::ADMIN, false);
+        $this->registerAction("catdelete", EXECUTION_TYPE::ADMIN, false);
+
+        $this->registerAction("receivershow", EXECUTION_TYPE::ADMIN, false);
+        $this->registerAction("receiveradd", EXECUTION_TYPE::ADMIN, false);
+        $this->registerAction("receiverdelete", EXECUTION_TYPE::ADMIN, false);
 
         $this->registerAction("index", EXECUTION_TYPE::PUBLIC);
         $this->registerAction("detail", EXECUTION_TYPE::PUBLIC);

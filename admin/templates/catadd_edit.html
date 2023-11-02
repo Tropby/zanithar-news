@@ -1,0 +1,6 @@
+<h1>{LANG("news.headline")}</h1>
+
+<form action="?{MAIN_CurrentParam()}&id={ID}" method="POST">
+    {MAIN_TextInput("Text", "news.name", NAME)}
+    {MAIN_Submit("news.save")}
+</form>

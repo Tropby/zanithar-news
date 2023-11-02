@@ -1,0 +1,23 @@
+<h1>{LANG("news.catshow")}</h1>
+
+<a href="{MAIN_LINK('news', 'catadd')}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>
+
+<div class="table">
+{list CATEGORIES}
+    <div class="row">
+        <div>{CATEGORIES.ID}</div>
+        <div>
+            {CATEGORIES.NAME}            
+        </div>
+        <div class="right">
+            <a href="{MAIN_LINK('news', 'receivershow', 'catid', CATEGORIES.ID)}" title="{LANG('NEWS.RECEIVERS')}" class="button">
+                <img src="{mediamanager_ModuleImage('core', 'mail.png')}" width="20px" alt="receiver" />
+            </a>
+            <a href="{MAIN_LINK('news', 'catedit', 'id', CATEGORIES.ID)}" title="{LANG('CORE.EDIT')}" class="editButton"></a>            
+            <a href="{MAIN_LINK('news', 'catdelete', 'id', CATEGORIES.ID)}" title="{LANG('CORE.DELETE')}" class="delButton"></a>
+        </div>
+    </div>
+{/list}
+</div>
+
+<a href="{MAIN_LINK('news', 'catadd')}"><span class="addButton"></span>{LANG('CORE.ADD')}</a>
