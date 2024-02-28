@@ -13,7 +13,7 @@ class Newsletter extends \apexx\modules\core\IMail
     {
         $this->assign("MAIL_TITLE", $data["TITLE"]);
         $this->assign("ID", (int)$data["ID"]);
-        $this->assign("MAIL_TEASER", nl2br( substr( strip_tags($data["TEXT"]), 0, 200 )."..." ) );
+        $this->assign("MAIL_TEASER", $data["TEXT"]);
         
         $this->setSubject( $this->module()->core()->dbConfigValue("main", "websitename")." - Newsletter - ".$data["TITLE"]);
 
