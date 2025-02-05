@@ -1,21 +1,21 @@
 <?php
 
-namespace apexx\modules\news\action;
+namespace zanithar\modules\news\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
-use apexx\modules\core\Pager;
+use zanithar\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\Pager;
 
-class Index extends \apexx\modules\core\IAction
+class Index extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
-        /*** @var \apexx\modules\user\Module */
+        /*** @var \zanithar\modules\user\Module */
         $userModule = $this->module()->core()->module("user");
         $user = $userModule->currentUser();
 
         $pager = new Pager($this->module()->core(),
             "a.id AS ID, UNIX_TIMESTAMP(`time`) AS `TIME`, a.title as TITLE, `text` AS `TEXT`, b.name AS CAT_NAME",
-            "APEXX_PREFIX_news AS a LEFT JOIN APEXX_PREFIX_news_category AS b ON (a.category = b.id)",
+            "zanithar_PREFIX_news AS a LEFT JOIN zanithar_PREFIX_news_category AS b ON (a.category = b.id)",
                 ( $this->param()->getIf("catid") ? "b.id = " . $this->param()->getInt("catid")." AND " : "" ). " " .
                 ($user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" :
                 "  UNIX_TIMESTAMP(`time`) < ".time()." AND `time` IS NOT NULL AND ") . "1=1",
@@ -33,7 +33,7 @@ class Index extends \apexx\modules\core\IAction
         if( $this->param()->getIf("catid") )
         {
             $catid = $this->param()->getInt("catid");
-            $stmt = $this->prepare("SELECT `name` AS `NAME` FROM APEXX_PREFIX_news_category WHERE id = :id");
+            $stmt = $this->prepare("SELECT `name` AS `NAME` FROM zanithar_PREFIX_news_category WHERE id = :id");
             $stmt->bindParam(":id", $catid);
             $stmt->execute();
             $this->assign("CAT_NAME", $stmt->fetch()["NAME"]);

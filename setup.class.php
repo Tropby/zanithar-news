@@ -1,16 +1,16 @@
 <?php
 
-namespace apexx\modules\news;
+namespace zanithar\modules\news;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class Setup extends \apexx\modules\core\ISetup
+class Setup extends \zanithar\modules\core\ISetup
 {
     public function install(): bool
     {
         $ok = true;
 
-        $ok &= $this->executeSQL("CREATE TABLE `APEXX_PREFIX_news` (
+        $ok &= $this->executeSQL("CREATE TABLE `zanithar_PREFIX_news` (
             `id` int(11) UNSIGNED NOT NULL,
             `secid` tinytext NOT NULL,
             `prodid` int(11) UNSIGNED NOT NULL DEFAULT 0,
@@ -54,7 +54,7 @@ class Setup extends \apexx\modules\core\ISetup
     {
         $ok = true;
 
-        $ok &= $this->executeSQL("DROP TABLE `APEXX_PREFIX_news`");
+        $ok &= $this->executeSQL("DROP TABLE `zanithar_PREFIX_news`");
 
         if (!$ok)
             return false;

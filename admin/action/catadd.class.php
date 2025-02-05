@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class CatAdd extends \apexx\modules\core\IAction
+class CatAdd extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -15,7 +15,7 @@ class CatAdd extends \apexx\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    APEXX_PREFIX_news_category
+                    zanithar_PREFIX_news_category
                     ( 
                         `name`
                     ) 

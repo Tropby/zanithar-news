@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class Add extends \apexx\modules\core\IAction
+class Add extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -21,7 +21,7 @@ class Add extends \apexx\modules\core\IAction
             $lastchange = time();
 
             /**
-             * @var \apexx\modules\user\Module
+             * @var \zanithar\modules\user\Module
              */
             $userModule = $this->module()->core()->module("user");
             $user = $userModule->currentUser();
@@ -42,7 +42,7 @@ class Add extends \apexx\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    APEXX_PREFIX_news 
+                    zanithar_PREFIX_news 
                     ( 
                         `text`, 
                         `title`, 
@@ -85,7 +85,7 @@ class Add extends \apexx\modules\core\IAction
                 if( $this->param()->postIf("news_newsletter") )
                 {
                     $id = $this->lastInsertId();
-                    $mail = new \apexx\modules\news\mail\Newsletter($this->module());
+                    $mail = new \zanithar\modules\news\mail\Newsletter($this->module());
                     $mail->execute(
                         [
                             "TITLE" => "$title",
@@ -104,14 +104,14 @@ class Add extends \apexx\modules\core\IAction
         }
 
         /// TODO: Check if user is Team-Member
-        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_user ORDER BY username ASC");
+        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_user ORDER BY username ASC");
         $stmt->execute();
         $users = $stmt->fetchAll();
         $tmplUsers = array();
 
-        /*** @var \apexx\modules\user\Module */
+        /*** @var \zanithar\modules\user\Module */
         $userModule = $this->module()->core()->module("user");
-        /*** @var \apexx\modules\user\User */
+        /*** @var \zanithar\modules\user\User */
         $userId = $userModule->currentUser()->id();
         foreach ($users as $user)
         {
@@ -122,7 +122,7 @@ class Add extends \apexx\modules\core\IAction
             );
         }
 
-        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $categories = $stmt->fetchAll();
         $tmplCategories = array();

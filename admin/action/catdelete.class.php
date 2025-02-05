@@ -1,8 +1,8 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-class CatDelete extends \apexx\modules\core\IAction
+class CatDelete extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -11,7 +11,7 @@ class CatDelete extends \apexx\modules\core\IAction
         {
             $id = $this->param()->getInt("id");
 
-            $statement = $this->prepare("DELETE FROM APEXX_PREFIX_news_category WHERE `id` = :id");
+            $statement = $this->prepare("DELETE FROM zanithar_PREFIX_news_category WHERE `id` = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute())
                 $this->module()->core()->redirectAction("news", "catshow");

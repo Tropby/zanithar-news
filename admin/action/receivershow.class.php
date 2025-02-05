@@ -1,8 +1,8 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-class ReceiverShow extends \apexx\modules\core\IAction
+class ReceiverShow extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -13,7 +13,7 @@ class ReceiverShow extends \apexx\modules\core\IAction
                 id AS ID, 
                 `email` AS EMAIL
             FROM 
-                APEXX_PREFIX_news_receivers
+                zanithar_PREFIX_news_receivers
             WHERE 
                 category = :category
             ORDER BY `email` ASC");

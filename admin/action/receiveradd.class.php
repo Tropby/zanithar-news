@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class ReceiverAdd extends \apexx\modules\core\IAction
+class ReceiverAdd extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -17,7 +17,7 @@ class ReceiverAdd extends \apexx\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    APEXX_PREFIX_news_receivers
+                    zanithar_PREFIX_news_receivers
                     ( 
                         `email`,
                         `category`

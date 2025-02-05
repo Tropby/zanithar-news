@@ -1,12 +1,12 @@
 <?php
 
-namespace apexx\modules\news;
+namespace zanithar\modules\news;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class Module extends \apexx\modules\core\IModule
+class Module extends \zanithar\modules\core\IModule
 {
-    public function __construct(\apexx\modules\core\Core $core)
+    public function __construct(\zanithar\modules\core\Core $core)
     {
         parent::__construct(
             $core,
@@ -39,7 +39,7 @@ class Module extends \apexx\modules\core\IModule
     {
         $this->core()->callFunction("registerNaviItem", [ "News", "list", "news.html"]);
 
-        $stmt = $this->core()->db()->prepare("SELECT * FROM APEXX_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->core()->db()->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $cats = $stmt->fetchAll();
         foreach($cats as $cat)

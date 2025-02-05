@@ -1,8 +1,8 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-class CatShow extends \apexx\modules\core\IAction
+class CatShow extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -11,7 +11,7 @@ class CatShow extends \apexx\modules\core\IAction
                 id AS ID, 
                 `name` AS NAME
             FROM 
-                APEXX_PREFIX_news_category 
+                zanithar_PREFIX_news_category 
             ORDER BY `name` ASC");
         $statement->execute();
         $this->assign("CATEGORIES", $statement->fetchAll());

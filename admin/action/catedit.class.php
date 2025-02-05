@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class CatEdit extends \apexx\modules\core\IAction
+class CatEdit extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -20,7 +20,7 @@ class CatEdit extends \apexx\modules\core\IAction
 
             $statement = $this->prepare(
                 "UPDATE
-                    APEXX_PREFIX_news_category
+                    zanithar_PREFIX_news_category
                 SET 
                     `name` = :name
                 WHERE
@@ -33,7 +33,7 @@ class CatEdit extends \apexx\modules\core\IAction
             $this->module()->core()->redirectAction("news", "catshow");
         }
 
-        $stmt = $this->prepare("SELECT `name` AS `NAME` FROM APEXX_PREFIX_news_category WHERE id = :id LIMIT 1");
+        $stmt = $this->prepare("SELECT `name` AS `NAME` FROM zanithar_PREFIX_news_category WHERE id = :id LIMIT 1");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $cat = $stmt->fetch();

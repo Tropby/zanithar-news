@@ -1,12 +1,12 @@
 <?php
 
-namespace apexx\modules\news\admin\action;
+namespace zanithar\modules\news\admin\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
 use Exception;
 
-class Edit extends \apexx\modules\core\IAction
+class Edit extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -25,7 +25,7 @@ class Edit extends \apexx\modules\core\IAction
             $lastchange = time();
 
             /**
-             * @var \apexx\modules\user\Module
+             * @var \zanithar\modules\user\Module
              */
             $userModule = $this->module()->core()->module("user");
             $user = $userModule->currentUser();
@@ -46,7 +46,7 @@ class Edit extends \apexx\modules\core\IAction
 
             $statement = $this->prepare("
                 UPDATE 
-                    APEXX_PREFIX_news 
+                    zanithar_PREFIX_news 
                 SET 
                     `text` = :text, 
                     `title` = :title,                    
@@ -75,7 +75,7 @@ class Edit extends \apexx\modules\core\IAction
 
             if( $this->param()->postIf("news_newsletter") )
             {
-                $mail = new \apexx\modules\news\mail\Newsletter($this->module());
+                $mail = new \zanithar\modules\news\mail\Newsletter($this->module());
                 $mail->execute(
                     [
                         "TITLE" => "$title",
@@ -107,14 +107,14 @@ class Edit extends \apexx\modules\core\IAction
                 `allowrating` AS ALLOWRATING,
                 `category` AS CATID
             FROM 
-                APEXX_PREFIX_news 
+                zanithar_PREFIX_news 
             WHERE 
                 `id` = :id");
         $statement->bindParam(":id", $id);
         $statement->execute();
         $news = $statement->fetch();
 
-        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_user ORDER BY username ASC");
+        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_user ORDER BY username ASC");
         $stmt->execute();
         $users = $stmt->fetchAll();
         $tmplUsers = array();
@@ -127,7 +127,7 @@ class Edit extends \apexx\modules\core\IAction
             );
         }
 
-        $stmt = $this->prepare("SELECT * FROM APEXX_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $categories = $stmt->fetchAll();
         $tmplCategories = array();

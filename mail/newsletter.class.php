@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\mail;
+namespace zanithar\modules\news\mail;
 
-class Newsletter extends \apexx\modules\core\IMail 
+class Newsletter extends \zanithar\modules\core\IMail 
 {
-    public function __construct(\apexx\modules\core\IModule $module)
+    public function __construct(\zanithar\modules\core\IModule $module)
     {        
         parent::__construct($module);
     }
@@ -20,7 +20,7 @@ class Newsletter extends \apexx\modules\core\IMail
         $category = (int)$data["CATEGORY"];
 
         $db = $this->module()->core()->db();
-        $stmt = $db->prepare("SELECT `email` AS EMAIL FROM APEXX_PREFIX_news_receivers WHERE category = :category");
+        $stmt = $db->prepare("SELECT `email` AS EMAIL FROM zanithar_PREFIX_news_receivers WHERE category = :category");
         $stmt->bindParam(":category", $category);
         $stmt->execute();
 

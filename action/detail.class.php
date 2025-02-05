@@ -1,10 +1,10 @@
 <?php
 
-namespace apexx\modules\news\action;
+namespace zanithar\modules\news\action;
 
-use apexx\modules\core\EXECUTION_TYPE;
+use zanithar\modules\core\EXECUTION_TYPE;
 
-class Detail extends \apexx\modules\core\IAction
+class Detail extends \zanithar\modules\core\IAction
 {
     public function execute(): void
     {
@@ -21,7 +21,7 @@ class Detail extends \apexx\modules\core\IAction
                     SELECT 
                         id
                     FROM
-                        APEXX_PREFIX_news
+                        zanithar_PREFIX_news
                     WHERE
                         `title` LIKE :name 
                     LIMIT 1");
@@ -37,7 +37,7 @@ class Detail extends \apexx\modules\core\IAction
             }
         }
 
-        /*** @var \apexx\modules\user\Module */
+        /*** @var \zanithar\modules\user\Module */
         $userModule = $this->module()->core()->module("user");
         $user = $userModule->currentUser();
 
@@ -49,9 +49,9 @@ class Detail extends \apexx\modules\core\IAction
                 `text` AS `TEXT`,
                 b.name AS CAT_NAME
             FROM
-                APEXX_PREFIX_news AS a
+                zanithar_PREFIX_news AS a
             LEFT JOIN 
-                APEXX_PREFIX_news_category AS b ON (a.category = b.id)
+                zanithar_PREFIX_news_category AS b ON (a.category = b.id)
             WHERE
                 a.id = :id ".( $user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" : " AND a.time < NOW() " ) );
         $statement->bindParam(":id", $id);
