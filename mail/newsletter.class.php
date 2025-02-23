@@ -20,7 +20,7 @@ class Newsletter extends \zanithar\modules\core\IMail
         $category = (int)$data["CATEGORY"];
 
         $db = $this->module()->core()->db();
-        $stmt = $db->prepare("SELECT `email` AS EMAIL FROM zanithar_PREFIX_news_receivers WHERE category = :category");
+        $stmt = $db->prepare("SELECT `email` AS EMAIL FROM ZCMS_PREFIX_news_receivers WHERE category = :category");
         $stmt->bindParam(":category", $category);
         $stmt->execute();
 

@@ -42,7 +42,7 @@ class Add extends \zanithar\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    zanithar_PREFIX_news 
+                    ZCMS_PREFIX_news 
                     ( 
                         `text`, 
                         `title`, 
@@ -104,7 +104,7 @@ class Add extends \zanithar\modules\core\IAction
         }
 
         /// TODO: Check if user is Team-Member
-        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_user ORDER BY username ASC");
+        $stmt = $this->prepare("SELECT * FROM ZCMS_PREFIX_user ORDER BY username ASC");
         $stmt->execute();
         $users = $stmt->fetchAll();
         $tmplUsers = array();
@@ -122,7 +122,7 @@ class Add extends \zanithar\modules\core\IAction
             );
         }
 
-        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->prepare("SELECT * FROM ZCMS_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $categories = $stmt->fetchAll();
         $tmplCategories = array();

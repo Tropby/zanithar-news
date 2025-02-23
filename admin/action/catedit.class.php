@@ -20,7 +20,7 @@ class CatEdit extends \zanithar\modules\core\IAction
 
             $statement = $this->prepare(
                 "UPDATE
-                    zanithar_PREFIX_news_category
+                    ZCMS_PREFIX_news_category
                 SET 
                     `name` = :name
                 WHERE
@@ -33,7 +33,7 @@ class CatEdit extends \zanithar\modules\core\IAction
             $this->module()->core()->redirectAction("news", "catshow");
         }
 
-        $stmt = $this->prepare("SELECT `name` AS `NAME` FROM zanithar_PREFIX_news_category WHERE id = :id LIMIT 1");
+        $stmt = $this->prepare("SELECT `name` AS `NAME` FROM ZCMS_PREFIX_news_category WHERE id = :id LIMIT 1");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $cat = $stmt->fetch();

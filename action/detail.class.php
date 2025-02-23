@@ -21,7 +21,7 @@ class Detail extends \zanithar\modules\core\IAction
                     SELECT 
                         id
                     FROM
-                        zanithar_PREFIX_news
+                        ZCMS_PREFIX_news
                     WHERE
                         `title` LIKE :name 
                     LIMIT 1");
@@ -49,9 +49,9 @@ class Detail extends \zanithar\modules\core\IAction
                 `text` AS `TEXT`,
                 b.name AS CAT_NAME
             FROM
-                zanithar_PREFIX_news AS a
+                ZCMS_PREFIX_news AS a
             LEFT JOIN 
-                zanithar_PREFIX_news_category AS b ON (a.category = b.id)
+                ZCMS_PREFIX_news_category AS b ON (a.category = b.id)
             WHERE
                 a.id = :id ".( $user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" : " AND a.time < NOW() " ) );
         $statement->bindParam(":id", $id);

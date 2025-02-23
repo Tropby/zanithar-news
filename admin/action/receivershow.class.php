@@ -13,7 +13,7 @@ class ReceiverShow extends \zanithar\modules\core\IAction
                 id AS ID, 
                 `email` AS EMAIL
             FROM 
-                zanithar_PREFIX_news_receivers
+                ZCMS_PREFIX_news_receivers
             WHERE 
                 category = :category
             ORDER BY `email` ASC");

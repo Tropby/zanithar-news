@@ -11,7 +11,7 @@ class CatDelete extends \zanithar\modules\core\IAction
         {
             $id = $this->param()->getInt("id");
 
-            $statement = $this->prepare("DELETE FROM zanithar_PREFIX_news_category WHERE `id` = :id");
+            $statement = $this->prepare("DELETE FROM ZCMS_PREFIX_news_category WHERE `id` = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute())
                 $this->module()->core()->redirectAction("news", "catshow");

@@ -39,7 +39,7 @@ class Module extends \zanithar\modules\core\IModule
     {
         $this->core()->callFunction("registerNaviItem", [ "News", "list", "news.html"]);
 
-        $stmt = $this->core()->db()->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->core()->db()->prepare("SELECT * FROM ZCMS_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $cats = $stmt->fetchAll();
         foreach($cats as $cat)

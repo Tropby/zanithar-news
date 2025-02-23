@@ -17,7 +17,7 @@ class ReceiverAdd extends \zanithar\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    zanithar_PREFIX_news_receivers
+                    ZCMS_PREFIX_news_receivers
                     ( 
                         `email`,
                         `category`

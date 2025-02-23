@@ -46,7 +46,7 @@ class Edit extends \zanithar\modules\core\IAction
 
             $statement = $this->prepare("
                 UPDATE 
-                    zanithar_PREFIX_news 
+                    ZCMS_PREFIX_news 
                 SET 
                     `text` = :text, 
                     `title` = :title,                    
@@ -107,14 +107,14 @@ class Edit extends \zanithar\modules\core\IAction
                 `allowrating` AS ALLOWRATING,
                 `category` AS CATID
             FROM 
-                zanithar_PREFIX_news 
+                ZCMS_PREFIX_news 
             WHERE 
                 `id` = :id");
         $statement->bindParam(":id", $id);
         $statement->execute();
         $news = $statement->fetch();
 
-        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_user ORDER BY username ASC");
+        $stmt = $this->prepare("SELECT * FROM ZCMS_PREFIX_user ORDER BY username ASC");
         $stmt->execute();
         $users = $stmt->fetchAll();
         $tmplUsers = array();
@@ -127,7 +127,7 @@ class Edit extends \zanithar\modules\core\IAction
             );
         }
 
-        $stmt = $this->prepare("SELECT * FROM zanithar_PREFIX_news_category ORDER BY `name` ASC");
+        $stmt = $this->prepare("SELECT * FROM ZCMS_PREFIX_news_category ORDER BY `name` ASC");
         $stmt->execute();
         $categories = $stmt->fetchAll();
         $tmplCategories = array();

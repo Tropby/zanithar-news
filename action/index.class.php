@@ -15,7 +15,7 @@ class Index extends \zanithar\modules\core\IAction
 
         $pager = new Pager($this->module()->core(),
             "a.id AS ID, UNIX_TIMESTAMP(`time`) AS `TIME`, a.title as TITLE, `text` AS `TEXT`, b.name AS CAT_NAME",
-            "zanithar_PREFIX_news AS a LEFT JOIN zanithar_PREFIX_news_category AS b ON (a.category = b.id)",
+            "ZCMS_PREFIX_news AS a LEFT JOIN ZCMS_PREFIX_news_category AS b ON (a.category = b.id)",
                 ( $this->param()->getIf("catid") ? "b.id = " . $this->param()->getInt("catid")." AND " : "" ). " " .
                 ($user->hasRight("news", "index", EXECUTION_TYPE::ADMIN) ? "" :
                 "  UNIX_TIMESTAMP(`time`) < ".time()." AND `time` IS NOT NULL AND ") . "1=1",
@@ -33,7 +33,7 @@ class Index extends \zanithar\modules\core\IAction
         if( $this->param()->getIf("catid") )
         {
             $catid = $this->param()->getInt("catid");
-            $stmt = $this->prepare("SELECT `name` AS `NAME` FROM zanithar_PREFIX_news_category WHERE id = :id");
+            $stmt = $this->prepare("SELECT `name` AS `NAME` FROM ZCMS_PREFIX_news_category WHERE id = :id");
             $stmt->bindParam(":id", $catid);
             $stmt->execute();
             $this->assign("CAT_NAME", $stmt->fetch()["NAME"]);

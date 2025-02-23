@@ -14,9 +14,9 @@ class Index extends \zanithar\modules\core\IAction
                 a.title as TITLE,
                 b.name AS CAT_NAME
             FROM 
-                zanithar_PREFIX_news AS a
+                ZCMS_PREFIX_news AS a
             LEFT JOIN 
-                zanithar_PREFIX_news_category AS b ON (a.category = b.id)
+                ZCMS_PREFIX_news_category AS b ON (a.category = b.id)
             ORDER BY `time` DESC");
         $statement->execute();
         $this->assign("PAGES", $statement->fetchAll());

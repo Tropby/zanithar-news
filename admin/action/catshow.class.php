@@ -11,7 +11,7 @@ class CatShow extends \zanithar\modules\core\IAction
                 id AS ID, 
                 `name` AS NAME
             FROM 
-                zanithar_PREFIX_news_category 
+                ZCMS_PREFIX_news_category 
             ORDER BY `name` ASC");
         $statement->execute();
         $this->assign("CATEGORIES", $statement->fetchAll());

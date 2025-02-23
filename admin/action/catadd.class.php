@@ -15,7 +15,7 @@ class CatAdd extends \zanithar\modules\core\IAction
 
             $statement = $this->prepare("
                 INSERT INTO 
-                    zanithar_PREFIX_news_category
+                    ZCMS_PREFIX_news_category
                     ( 
                         `name`
                     ) 
